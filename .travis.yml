@@ -54,10 +54,8 @@ matrix:
         - $HOME/AppData/Local/Temp/chocolatey
         - /C/tools/cygwin
 
-      before_script:
-        - ./bootstrap
-
       script:
+        - ./bootstrap
         - ./configure IANADIR="./" IANAUSERDIR="./" DEFAULT_INTF="lanplus" --enable-intf-lan --enable-intf-lanplus --disable-intf-bmc --disable-intf-free --disable-intf-open --disable-intf-imb --disable-intf-usb --enable-intf-serial --enable-ipmishell
         - make
 
