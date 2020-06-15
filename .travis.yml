@@ -43,19 +43,19 @@ matrix:
       before_install:
         - |-
           choco uninstall -y mingw
-          choco upgrade --no-progress -y cygwin
-          setup-x86.exe -q --disable-buggy-antivirus --upgrade-also --wait --arch="x86_64" --root="c:\tools\cygwin" --packages="wget,bash,p7zip,libssl-devel,git,gcc-core,make,diffutils,autoconf,automake,m4,libtool,libncurses-devel,libreadline-devel" --verbose --no-admin
+          choco install --no-progress -y cygwin --params "-q --disable-buggy-antivirus --upgrade-also --wait --arch=x86_64 --root=C:\tools\cygwin --packages=wget,bash,p7zip,libssl-devel,git,gcc-core,make,diffutils,autoconf,automake,m4,libtool,libncurses-devel,libreadline-devel --verbose --no-admin"
+          export PATH=/c/tools/cygwin/bin:/c/tools/cygwin/usr/bin:$PATH
           echo PATH is ${PATH}
-          ls -R /c/tools/cygwin
-          export PATH=$PATH:/c/tools/cygwin/bin:/c/tools/cygwin/usr/bin
 
       cache:
         directories:
         - $HOME/AppData/Local/Temp/chocolatey
         - /C/tools/cygwin
 
-      script:
+      before_script:
         - ./bootstrap
+
+      script:
         - ./configure IANADIR="./" IANAUSERDIR="./" DEFAULT_INTF="lanplus" --enable-intf-lan --enable-intf-lanplus --disable-intf-bmc --disable-intf-free --disable-intf-open --disable-intf-imb --disable-intf-usb --enable-intf-serial --enable-ipmishell
         - make
 
