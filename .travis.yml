@@ -1,7 +1,5 @@
 language: C
 sudo: enabled
-before_script:
- - ./bootstrap
 addons:
   apt:
     update: true
@@ -19,18 +17,24 @@ matrix:
 #        apt:
 #          packages:
 #            - libsystemd-dev
+#      before_script:
+#        - ./bootstrap
 #      script:
 #        - ./configure --enable-intf-dummy --enable-intf-dbus
 #        - make
 #        - sudo make install
 #    - os: linux
 #      dist: trusty
+#      before_script:
+#        - ./bootstrap
 #      script:
 #        - ./configure --enable-intf-dummy
 #        - make
 #        - sudo make install
 #    - os: osx
 #      osx_image: xcode10.2
+#      before_script:
+#        - ./bootstrap
 #      script:
 #        - ./configure --enable-intf-dummy
 #        - make
@@ -49,6 +53,9 @@ matrix:
         directories:
         - $HOME/AppData/Local/Temp/chocolatey
         - /C/tools/cygwin
+
+      before_script:
+        - ./bootstrap
 
       script:
         - ./configure IANADIR="./" IANAUSERDIR="./" DEFAULT_INTF="lanplus" --enable-intf-lan --enable-intf-lanplus --disable-intf-bmc --disable-intf-free --disable-intf-open --disable-intf-imb --disable-intf-usb --enable-intf-serial --enable-ipmishell
