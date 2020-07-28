@@ -72,23 +72,6 @@ int ipmi_hpmfwupg_main(struct ipmi_intf *, int, char **);
 #define HPMFWUPG_FW_MISMATCH          0x83
 #define HPMFWUPG_ROLLBACK_DENIED      0x83
 
-/*
- * This error code is used as a temporary PATCH to
- * the latest Open ipmi driver.  This PATCH
- * will be removed once a new Open IPMI driver is released.
- * (Buggy version = 39)
- */
-#define ENABLE_OPENIPMI_V39_PATCH
-
-#ifdef ENABLE_OPENIPMI_V39_PATCH
-# define RETRY_COUNT_MAX 3
-static int errorCount;
-# define HPMFWUPG_IS_RETRYABLE(error)                                          \
- ((((error==0x83)||(error==0x82)||(error==0x80)) && (errorCount++<RETRY_COUNT_MAX))?TRUE:FALSE)
-#else
-# define HPMFWUPG_IS_RETRYABLE(error) FALSE
-#endif
-
 /* HPM FIRMWARE UPGRADE GENERAL DEFINITIONS */
 #define HPMFWUPG_PICMG_IDENTIFIER         0
 #define HPMFWUPG_VERSION_SIZE             6
