@@ -11,8 +11,8 @@ ConditionPathExists=/var/run/bmc-info
 Type=oneshot
 RemainAfterExit=yes
 
-ExecStart=/usr/libexec/bmc-snmp-proxy start
-ExecStop=/usr/libexec/bmc-snmp-proxy stop
+ExecStart=/usr/sbin/bmc-snmp-proxy start
+ExecStop=/usr/sbin/bmc-snmp-proxy stop
 
 [Install]
 WantedBy=multi-user.target

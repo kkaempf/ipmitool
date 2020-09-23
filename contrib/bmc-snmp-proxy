@@ -14,6 +14,10 @@
 #
 # Assumptions:  This script will work only when /etc/snmp/ is writable.
 #
+# Provides:          bmc-snmp-proxy
+# Required-Start:    ipmi snmp
+# Default-Start:     3 4 5
+# Default-Stop:      0 1 2 6
 #############################################################################
 # GLOBALS
 #############################################################################
